@@ -1,19 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+  -text-size-adjust: 100%;
+  list-style: none;
 }
 
+* {
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,18 +27,27 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  background: #efefbb;
+  background: linear-gradient(to right, #d4d3dd, #aedef4);
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  margin: 100;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  margin: auto;
+  letter-spacing: 3 px;
+  justify-content: center;
 }
+h2 {
+  margin: auto;
+  letter-spacing: 1 px;
+  justify-content: center;
 
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -66,4 +78,65 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+ul {
+  list-style-type: none;
+}
+.nav{
+  display: flexbox;
+}
+.home_link{
+justify-content: left;
+}
+.nav_link{
+justify-content: right;
+}
+.review_list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: center;
+  margin: 0 auto;
+  /* max-width: 1200px; */
+}
+
+.review {
+  background-color: #eee;
+  border-radius: 2rem;
+  box-shadow: 0 1rem 2rem rgba(100, 100, 100, 0.9);
+  margin: 1rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.review .img-container {
+  /* background-color: rgba(105, 10, 10, 0.1); */
+  /* border-radius: 50%; */
+  width: 220px;
+  height: 180px;
+  text-align: center;
+}
+
+.review .img-container img {
+  max-width: 50%;
+  margin-top: 20px;
+}
+
+.review .info {
+  margin-top: 20px;
+}
+
+.review .info .title {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 0.8em;
+}
+
+.review .info .name {
+  margin: 15px;
+  letter-spacing: 0.1px;
+}
+.review .info .votes {
+  text-align: left;
 }
