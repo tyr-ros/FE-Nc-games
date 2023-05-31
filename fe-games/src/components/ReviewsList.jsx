@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchReviews } from "./api";
-
+import { dateConverter } from "./utils";
 export function ReviewsList() {
   const [currentReviews, setCurrentReviews] = useState([]);
 
@@ -15,37 +15,7 @@ export function ReviewsList() {
       });
   }, []);
 
-  function dateConverter(reviewDate) {
-    const date = new Date(reviewDate);
-    const days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
-    const dayName = days[date.getDay()];
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const monthName = months[date.getMonth()];
-    const year = date.getFullYear();
-    const nameDate = `${dayName} ${monthName} ${year}`;
-    return nameDate;
-  }
+
   return (
     <main className="review_list">
       <ul>
