@@ -9,5 +9,16 @@ export function fetchReviews() {
         .then((res) => {
             return res.data
         })
-        .catch((err) => console.log(err, "<--- fetch all reviews"))
+        .catch((err) => { console.log(err, "<--- fetch all reviews") })
+}
+
+export function fetchReviewById(id) {
+    return gameApi
+        .get(`/reviews/${id}`)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            console.log(err, "<-- fetchReviewById");
+        })
 }
