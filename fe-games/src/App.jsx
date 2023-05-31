@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from './components/Nav'
+import {ReviewsList} from './components/ReviewsList'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <div>
-        <h1>Games</h1>
-      </div>
-      
-    </>
-  )
+    <BrowserRouter>
+      <>
+        <Nav/>
+        <Routes>
+          <Route path="/reviewsList" element={<ReviewsList />} />
+        </Routes>
+      </>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
