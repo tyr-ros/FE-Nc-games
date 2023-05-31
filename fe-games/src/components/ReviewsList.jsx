@@ -3,21 +3,23 @@ import { fetchReviews } from "./api";
 import { dateConverter } from "./utils";
 export function ReviewsList() {
   const [currentReviews, setCurrentReviews] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetchReviews()
-      .then(({ reviews }) => {
-        console.log();
-        return reviews;
-      })
-      .then((reviews) => {
-        setCurrentReviews(reviews);
-      });
+    fetchReviews().then(({ reviews }) => {
+      setLoading(false)
+      setCurrentReviews(reviews);
+      return reviews;
+    });
   }, []);
 
+if (isLoading){
+  return <span className="loader"></span>
+}
 
   return (
     <main className="review_list">
+      
       <ul>
         {currentReviews.map((review) => {
           return (
