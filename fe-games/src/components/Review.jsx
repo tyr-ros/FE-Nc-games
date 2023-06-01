@@ -17,7 +17,7 @@ export function Review() {
   }, [review_id]);
 
   if (isLoading) {
-    return <span className="loader"></span>;
+    return <p className="loader">Loading...</p>;
   }
   return (
     <main className="review_list">
