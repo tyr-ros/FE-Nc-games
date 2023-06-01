@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchReviews } from "./api";
 import { dateConverter } from "./utils";
+import { Link } from "react-router-dom";
+
 export function ReviewsList() {
   const [currentReviews, setCurrentReviews] = useState([]);
   const [isLoading, setLoading] = useState(true)
@@ -14,7 +16,7 @@ export function ReviewsList() {
   }, []);
 
 if (isLoading){
-  return <span className="loader"></span>
+  return <p className="loader">Loading...</p>
 }
 
   return (
@@ -29,7 +31,7 @@ if (isLoading){
                 src={review.review_img_url}
                 alt={review.title}
               />
-              <p className="title">{review.title}</p>
+              <Link to={`/review/${review.review_id}`}> <p className="title"> {review.title}</p></Link>
               <p className="owner">Reviewed by {review.owner}</p>
               <p className="created_at">
                 Review created on {dateConverter(review.created_at)}
