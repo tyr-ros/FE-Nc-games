@@ -12,10 +12,13 @@ export function Review() {
   const [isLoading, setLoading] = useState(true);
   const [currentComments, setCurrentComments] = useState([]);
   const [err, setErr] = useState(null);
-  const [voted, setHasVoted] = useState(false);
+  const [upvoted, setHasUpVoted] = useState(false);
+  const [downvoted, setHasDownVoted] = useState(false);
 
   const { review_id } = useParams();
   let vote = 0;
+   
+
   useEffect(() => {
     fetchReviewById(review_id).then(({ review }) => {
       setLoading(false);
@@ -27,13 +30,31 @@ export function Review() {
   }, [review_id]);
 
   const upVote = (review_id) => {
-    voted ? (vote = - 1) : (vote = 1);
+    upvoted ? (vote = -1) : (vote = 1);
     setCurrentReview((currentReview) => {
-      if (!voted) {
-        setHasVoted(true);
+      if (!upvoted) {
+        setHasUpVoted(true);
         return { ...currentReview, votes: currentReview.votes + vote };
       } else {
-        setHasVoted(false);
+        setHasUpVoted(false);
+        return { ...currentReview, votes: currentReview.votes + vote };
+      }
+    });
+    setErr(null);
+    changeReviewVotes(review_id, vote).catch((err) => {
+      setErr("Something went wrong, please try again");
+      return { ...currentReview, votes: currentReview.votes + vote };
+    });
+  };
+
+  const downVote = (review_id) => {
+    downvoted ? (vote = -1) : (vote = 1);
+    setCurrentReview((currentReview) => {
+      if (!downvoted) {
+        setHasDownVoted(true);
+        return { ...currentReview, votes: currentReview.votes + vote };
+      } else {
+        setHasDownVoted(false);
         return { ...currentReview, votes: currentReview.votes + vote };
       }
     });
@@ -61,10 +82,14 @@ export function Review() {
         <p>{currentReview.owner}</p>
         <p>{currentReview.review_body}</p>
         {err ? <p>{err}</p> : null}
-        <button onClick={() => upVote(currentReview.review_id)}>
-          Votes: {currentReview.votes}
-          <span aria-label="votes for this review">👍</span>
+         
+        <button className={upvoted ? "voted" : "notVoted"} onClick={() => upVote(currentReview.review_id)} >
+          <span aria-label="upvote for this review">👍</span>
         </button>
+        <button className={downvoted ? "downvoted" : "notVoted"} onClick={() => downVote(currentReview.review_id)} >
+          <span aria-label="downvote for this review">👎</span>
+        </button>
+        <p className="review_votes"></p> Votes: {currentReview.votes}
         <p>{dateConverter(currentReview.created_at)}</p>
         <ul className="comment_list">
           {currentComments.map((comment) => {
