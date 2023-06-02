@@ -33,3 +33,26 @@ export function fetchCommentsByReviewId(id){
             console.log(err, "<-- fetchCommentsByReviewId");
         })
 }
+
+export function changeReviewVotes(id, vote){
+    const voteBody = {
+        inc_votes: vote
+    }
+    return gameApi
+    .patch(`/reviews/${id}`, voteBody)
+    .then((res)=>{
+        return res.data
+    })
+}
+
+export function postNewComment(id, comment){
+    const newComment = {
+        username: comment.username,
+        body: comment.body
+    }
+    return gameApi
+    .post(`/reviews/${id}/comments`, newComment)
+    .then((res)=>{
+        return res.data
+    })
+}
