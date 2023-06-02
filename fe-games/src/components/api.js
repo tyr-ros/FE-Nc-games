@@ -34,9 +34,9 @@ export function fetchCommentsByReviewId(id){
         })
 }
 
-export function changeReviewVotes(id){
+export function changeReviewVotes(id, vote){
     const voteBody = {
-        inc_votes: 1
+        inc_votes: vote
     }
     return gameApi
     .patch(`/reviews/${id}`, voteBody)

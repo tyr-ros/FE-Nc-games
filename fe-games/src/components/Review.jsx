@@ -15,7 +15,7 @@ export function Review() {
   const [voted, setHasVoted] = useState(false);
 
   const { review_id } = useParams();
-
+  let vote = 0;
   useEffect(() => {
     fetchReviewById(review_id).then(({ review }) => {
       setLoading(false);
@@ -27,17 +27,21 @@ export function Review() {
   }, [review_id]);
 
   const upVote = (review_id) => {
-    if (!voted) {
-      setCurrentReview((currentReview) => {
-        setHasVoted(true)
-        return { ...currentReview, votes: currentReview.votes + 1 };
-      });
-      setErr(null);
-      changeReviewVotes(review_id).catch((err) => {
-        setErr("Something went wrong, please try again");
-        return { ...currentReview, votes: currentReview.votes - 1 };
-      });
-    }
+    voted ? (vote = 1) : (vote = -1);
+    setCurrentReview((currentReview) => {
+      if (!voted) {
+        setHasVoted(true);
+        return { ...currentReview, votes: currentReview.votes + vote };
+      } else {
+        setHasVoted(false);
+        return { ...currentReview, votes: currentReview.votes + vote };
+      }
+    });
+    setErr(null);
+    changeReviewVotes(review_id, vote).catch((err) => {
+      setErr("Something went wrong, please try again");
+      return { ...currentReview, votes: currentReview.votes + vote };
+    });
   };
 
   if (isLoading) {
@@ -57,7 +61,7 @@ export function Review() {
         <p>{currentReview.owner}</p>
         <p>{currentReview.review_body}</p>
         {err ? <p>{err}</p> : null}
-        {voted ? <p>You have already voted!</p> : null}
+        {voted ? <p>Removed vote!</p> : <p>Added vote!</p>}
         <button onClick={() => upVote(currentReview.review_id)}>
           Votes: {currentReview.votes}
           <span aria-label="votes for this review">👍</span>
