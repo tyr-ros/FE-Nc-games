@@ -41,7 +41,7 @@ export function ReviewsList() {
                 Review created on {dateConverter(review.created_at)}
               </p>
               <p className="category">{review.category}</p>
-              <p className="votes">Upvotes are currently {review.votes}</p>
+              <p className="votes">Votes: {review.votes}</p>
               <p className="comment_count">Comments {review.comment_count}</p>
               <p className="designer">Game designed by {review.designer}</p>
             </li>
