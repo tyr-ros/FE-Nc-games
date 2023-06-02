@@ -27,7 +27,7 @@ export function Review() {
   }, [review_id]);
 
   const upVote = (review_id) => {
-    voted ? (vote = 1) : (vote = -1);
+    voted ? (vote = - 1) : (vote = 1);
     setCurrentReview((currentReview) => {
       if (!voted) {
         setHasVoted(true);
@@ -61,7 +61,6 @@ export function Review() {
         <p>{currentReview.owner}</p>
         <p>{currentReview.review_body}</p>
         {err ? <p>{err}</p> : null}
-        {voted ? <p>Removed vote!</p> : <p>Added vote!</p>}
         <button onClick={() => upVote(currentReview.review_id)}>
           Votes: {currentReview.votes}
           <span aria-label="votes for this review">👍</span>
