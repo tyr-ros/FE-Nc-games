@@ -22,3 +22,14 @@ export function fetchReviewById(id) {
             console.log(err, "<-- fetchReviewById");
         })
 }
+
+export function fetchCommentsByReviewId(id){
+    return gameApi
+        .get(`/reviews/${id}/comments`)
+        .then((res) => {
+            return res.data
+        })
+        .catch((err) => {
+            console.log(err, "<-- fetchCommentsByReviewId");
+        })
+}
