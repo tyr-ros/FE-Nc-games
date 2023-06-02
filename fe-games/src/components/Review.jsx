@@ -3,6 +3,7 @@ import {
   fetchReviewById,
   fetchCommentsByReviewId,
   changeReviewVotes,
+  postNewComment
 } from "./api";
 import { dateConverter } from "./utils";
 import { useParams } from "react-router-dom";
@@ -48,7 +49,7 @@ export function Review() {
   };
 
   const downVote = (review_id) => {
-    downvoted ? (vote = -1) : (vote = 1);
+    downvoted ? (vote = 1) : (vote = -1);
     setCurrentReview((currentReview) => {
       if (!downvoted) {
         setHasDownVoted(true);

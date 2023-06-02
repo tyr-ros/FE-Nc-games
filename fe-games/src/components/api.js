@@ -44,3 +44,15 @@ export function changeReviewVotes(id, vote){
         return res.data
     })
 }
+
+export function postNewComment(id, comment){
+    const newComment = {
+        username: comment.username,
+        body: comment.body
+    }
+    return gameApi
+    .post(`/reviews/${id}/comments`, newComment)
+    .then((res)=>{
+        return res.data
+    })
+}
