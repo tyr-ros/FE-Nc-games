@@ -34,7 +34,7 @@ export function ReviewsList() {
               />
               <Link to={`/review/${review.review_id}`}>
                 {" "}
-                <p className="title"> {review.title}</p>
+                <h1 className="title"> {review.title}</h1>
               </Link>
               <p className="owner">Reviewed by {review.owner}</p>
               <p className="created_at">
