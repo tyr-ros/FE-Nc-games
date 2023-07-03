@@ -70,7 +70,7 @@ export function Review() {
     return <p className="loader">Loading...</p>;
   }
   return (
-    <main className="review_list">
+    <main >
       <section className="review">
         <img
           className="img-container"

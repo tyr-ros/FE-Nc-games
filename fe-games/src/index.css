@@ -4,7 +4,6 @@
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: rgba(0, 0, 0, 0);
   background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,13 +13,9 @@
   list-style: none;
 }
 
-@media (max-width: 480px) {
-  .review {
-    width: 100vw;
-  }
-}
 * {
   box-sizing: border-box;
+  outline: 1px solid red;
 }
 a {
   font-weight: 500;
@@ -71,24 +66,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
 ul {
   list-style-type: none;
 }
 
-.home{
-  
+.home {
 }
 .comment_author
   .comment_body
@@ -106,7 +88,7 @@ ul {
   color: #1a1a1a;
 }
 .nav {
-  align-content: center;
+  justify-content: center;
 }
 .home_link {
   justify-content: left;
@@ -115,24 +97,42 @@ ul {
   justify-content: right;
 }
 .review_list {
-  /* display: flex; */
-  color: black;
+  display: flex;
   flex-wrap: wrap;
-  align-items: space-between;
-  justify-content: center;
-  margin: 0 auto;
-  max-width: 1200px;
 }
 
 .review {
-  width: 60vw;
+  flex-basis: calc(50% - 20px);
   background-color: #eee;
-  border-radius: 2rem;
-  box-shadow: 0 1rem 2rem rgba(100, 100, 100, 0.9);
-  margin: 1rem;
-  padding: 3rem;
+  margin: 5px;
+  padding: 1rem;
   text-align: center;
+
+  color: black;
 }
+@media (min-width: 320px) {
+  .review {
+    flex-basis: calc(50% - 10px);
+  }
+  .title {
+    font-size: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .review {
+    flex-basis: calc(33.33% - 10px);
+  }
+  .title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .review {
+    flex-basis: calc(25% - 10px);
+  }
+}
+
 .comment_list {
   color: black;
   display: flex;
@@ -153,22 +153,19 @@ ul {
 .voted {
   background-color: green;
   border: 5px solid #1a1a1a;
-
 }
 .downvoted {
   background-color: red;
   border: 5px solid #1a1a1a;
-
 }
 .not-voted {
   background-color: rgb(174, 176, 174);
-
 }
 .review .img-container {
-  /* background-color: rgba(105, 10, 10, 0.1); */
-  /* border-radius: 50%; */
-  max-width: 70%;
-  height: 70%;
+  background-color: rgba(105, 10, 10, 0.1);
+  border-radius: 10%;
+  max-width: 100%;
+  max-height: 100%;
   text-align: center;
 }
 
@@ -194,4 +191,16 @@ ul {
 }
 .review .info .votes {
   text-align: left;
+}
+
+.img-text {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10%;
+  /* Add other styles as needed */
+}
+
+.title {
 }

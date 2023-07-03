@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { fetchReviews } from "./api";
 import { dateConverter } from "./utils";
@@ -14,7 +13,6 @@ export function ReviewsList() {
       setCurrentReviews(reviews);
       return reviews;
     });
-    
   }, []);
 
   if (isLoading) {
@@ -23,20 +21,23 @@ export function ReviewsList() {
 
   return (
     <main className="review_list">
-      <ul className="list">
-        {currentReviews.map((review) => {
-          return (
-            <li key={review.review_id} className="review">
+      {currentReviews.map((review) => {
+        return (
+          <div key={review.review_id} className="review">
+           
               <img
                 className="img-container"
                 src={review.review_img_url}
                 alt={review.title}
               />
-              <Link to={`/review/${review.review_id}`}>
-                {" "}
-                <h1 className="title"> {review.title}</h1>
-              </Link>
-              {/* <p className="owner">Reviewed by {review.owner}</p>
+              <div className="img-text">
+                <Link to={`/review/${review.review_id}`}>
+                  {" "}
+                  <h2 className="title"> {review.title}</h2>
+                </Link>
+              </div>
+            
+            {/* <p className="owner">Reviewed by {review.owner}</p>
               <p className="created_at">
                 Review created on {dateConverter(review.created_at)}
               </p>
@@ -44,12 +45,9 @@ export function ReviewsList() {
               <p className="votes">Votes: {review.votes}</p>
               <p className="comment_count">Comments {review.comment_count}</p>
               <p className="designer">Game designed by {review.designer}</p> */}
-            </li>
-          );
-        })}
-        
-      </ul>
+          </div>
+        );
+      })}
     </main>
   );
 }
-
